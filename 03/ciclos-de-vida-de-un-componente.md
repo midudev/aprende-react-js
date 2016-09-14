@@ -18,15 +18,7 @@ shouldComponentUpdate -> componentWillUpdate -> render -> componentDidUpdate
 ##### El component se va a desmontar
 componentWillUnmount
 
-React nos da la posibilidad de ejecutar código en los diferentes ciclos de vida de los componentes, de formas que podamos controlar completamente  
 
-Todos los componentes de React tienen un ciclo de vida realmente complicado, la propia naturaleza
-de React hace que este sea de esta manera. Para facilitarnos la vida React nos provee de una serie
-de eventos para capturar y actuar en determinados puntos de este ciclo de vida. Realmente son
-solo 7 puntos de captura, los cuales podemos dividir por puntos de construcción, actualización y
-destrucción.
-A continuación podrás descubrir cuales son y para utilizarlos solo tendrás que incluirlos dentro de
-la definición de tu componente.
 
 componentWillMount ↦ componentDidMount ↦ *render*
 
