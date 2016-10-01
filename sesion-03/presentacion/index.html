@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>reveal.js</title>
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/night.css">
+<link rel='stylesheet' href='css/custom.css'>
+
+<!-- Theme used for syntax highlighting of code -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<div class="reveal">
+	<div class="slides">
+		<!-- Bloque 1 -->
+		<section>
+			<section>
+				<img class='plain' style='width: 200px; height: 200px; background: transparent' data-src='./img/react-logo.png' />
+				<h2>Sesión 03: Curso ReactJS</h2>
+			</section>
+
+			<section>
+				<h3>¡Hola mundo!</h3>
+				<img class='plain' style='width: 200px; height: 200px' data-src='./img/miduga.png' />
+				<p class='center'>
+					Front-End Engineer at <strong class='highlight'>Schibsted Spain</strong><br />
+					Founding partner at <strong class='highlight'>Uikú</strong><br />
+					<strong class='highlight'>JavaScript, NodeJS, Swagger</strong>, performance freak<br />
+					Learning something new everyday<br />
+				</p>
+			</section>
+
+			<section>
+				<h3>Contenido de la sesión</h3>
+				<ul>
+					<li>Ciclos de vida de un componente
+					<li>Hijos dinámicos
+					<li>Anidamiento de vistas
+					<li>Encapsulando librerías
+				</ul>
+			</section>
+		</section>
+
+		<!-- Bloque 2: Ciclos de vida de un componente -->
+		<section>
+			<section>
+				<h3>Ciclos de vida de un componente</h3>
+				<img data-src='./img/1.jpg' />
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<ul>
+					<li>(Casi) todos los componentes de React tienen un ciclo de vida.
+					<li>Se dividen en tres tipos: <strong>montaje, actualización y desmontaje.</strong>
+					<li>Ofrece puntos de captura para ejecutar código en cada etapa
+					<li><a href='https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods'>Documentación oficial</a>
+				</ul>
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3><span class='highlight'>montaje:</span> componentWillMount</h3>
+				<pre>
+					<code class='js'>componentWillMount () {/* Stuff to do */}</code>
+				</pre>
+				<p>Se ejecuta una vez, tanto en cliente como servidor, inmediatamente <span class='highlight'>antes</span> del primer renderizado. Si usas <code>setState</code> en este método, <code>render()</code> verá el estado actualizado.
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3><span class='highlight'>montaje:</span> componentDidMount</h3>
+				<pre>
+					<code class='js'>componentDidMount () {/* Stuff to do */}</code>
+				</pre>
+				<p>Se ejecuta una vez, sólo en cliente, inmediatamente <span class='highlight'>después</span> del primer renderizado. Las referencias en el DOM ya existen y es el lugar ideal para hacer requests AJAX, crear eventos o poner timers como setTimeout</p>
+				<small class='highlight'>¡Ojo! El <code>componentDidMount ()</code> de los hijos será ejecutado antes que el del padre</small>
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3><span class='highlight'>actualización:</span> componentWillReceiveProps </h3>
+				<pre>
+					<code class='js'>componentWillReceiveProps (nextProps) {/* Stuff to do */}</code>
+				</pre>
+				<p>Se ejecuta cuando nuestro componente reciba nuevas propiedades. No se ejecuta con el primer <code>render()</code>. Esta función recibe como parámetro las nuevas propiedades (muy útil para hacer comparaciones y actualizar el estado según las propiedades).</p>
+				<pre>
+					<code class='js'>componentWillReceiveProps (nextProps) {
+	const changedValue = this.props.value !== nextProps.value ? true : false
+	this.setState({ changed: changedValue })
+}</code>
+				</pre>
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3><span class='highlight'>actualización:</span> componentWillUpdate </h3>
+				<pre>
+					<code class='js'>componentWillUpdate (nextProps, nextState) {/* Stuff to do */}</code>
+				</pre>
+				<p>Se ejecuta antes que nuestro componente vaya a renderizarse otra vez con las nuevas propiedades o estado. No se ejecuta con el primer <code>render()</code>. Esta función recibe como parámetro las nuevas propiedades y el nuevo estado.</p>
+				<small class='highlight'>¡Ojo! En <code>componentWillUpdate</code> no deberías usar <code>setState</code> para cambiar el estado o entrarás en un bucle infinito.</small>
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3><span class='highlight'>actualización:</span> shouldComponentUpdate </h3>
+				<pre>
+					<code class='js'>shouldComponentUpdate (nextProps, nextState) {/* Stuff to do */}</code>
+				</pre>
+				<p>Justo antes de volver a renderizarse con las nuevas props y estado. No se ejecuta con el primer <code>render()</code>. Esta función recibe como parámetro las nuevas propiedades y el nuevo estado y siempre debe devolver un valor booleano (true o false). Por defecto esat función siempre devuelve true.</p>
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3><span class='highlight'>actualización:</span> componentDidUpdate </h3>
+				<pre>
+					<code class='js'>componentDidUpdate (prevProps, prevState) {/* Stuff to do */}</code>
+				</pre>
+				<p>Se ejecuta justo después de renderizarse. No se ejecuta con el primer <code>render()</code>.</p>
+			</section>
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3><span class='highlight'>desmontaje:</span> componentWillUnmount </h3>
+				<pre>
+					<code class='js'>componentWillUnmount (prevProps, prevState) {/* Stuff to do */}</code>
+				</pre>
+				<p>Se ejecuta justo antes que el componente se vaya a eliminar el DOM. Especialmente útil para limpiar eventos asignados a las referencias DOM de nuestro componente, eliminar timers y limpiar observables</p>
+			</section>
+
+			<section>
+				<h6>Ciclos de vida de un componente</h6>
+				<h3>¡Todos juntos!</h3>
+				<pre>
+					<code class='js'>import React, { Component } from 'react';
+
+export default class HelloWorld extends Component {
+
+	// lifecycle methods
+	componentWillMount () {/* Stuff to do */}
+	componentDidMount () {/* Stuff to do */}
+	componentWillReceiveProps (nextProps) {/* Stuff to do */}
+	componentWillUpdate (nextProps, nextState) {/* Stuff to do */}
+	shouldComponentUpdate (nextProps, nextState) {/* Stuff to do */}
+	componentDidUpdate (prevProps, prevState) {/* Stuff to do */}
+	componentWillUnmount () {/* Stuff to do */}
+
+	render () {
+		return <p>Hello, world!</p>;
+	}
+}
+</code>
+				</pre>
+			</section>
+
+			<section>
+				<h1>Demo time!!!</h1>
+				<img class='plain' src='./img/cat-keyboard.gif' />
+			</section>
+		</section>
+
+		<!-- Bloque 3: Hijos dinámicos -->
+		<section>
+			<section>
+				<h3>Hijos dinámicos</h3>
+			</section>
+			<section>
+			</section>
+		</section>
+
+		<!-- Bloque 4: Anidamiento de vistas -->
+		<section>
+			<section>
+				<h3>Anidamiento de vistas</h3>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h3>Encapsulando librerías</h3>
+			</section>
+		</section>
+
+		<section>
+			<img class='plain' style='width: 200px; height: 200px' data-src='./img/miduga.png' />
+			<h4>¡Gracias!</h4>
+			<h5>¡Sígueme en Twitter! <a href='http://twitter.com/midudev'>@midudev</a></h5>
+			<small>Y pregúntame allí cuando y cuanto quieras sobre React y desarollo web ;)</small>
+		</section>
+	</div>
+	<div class='footer'>
+		<img class='plain' style='width: 40px; height: 40px' src='./img/miduga.png' />
+		<span>@midudev</span>
+	</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+	// More info https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		history: true,
+
+		// More info https://github.com/hakimel/reveal.js#dependencies
+		dependencies: [
+			{ src: 'plugin/markdown/marked.js' },
+			{ src: 'plugin/markdown/markdown.js' },
+			// { src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+		]
+	});
+</script>
