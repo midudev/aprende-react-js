@@ -9,6 +9,9 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

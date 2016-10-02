@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>reveal.js</title>
+<title>Slides: Sesión 03 ReactJS</title>
 
 <link rel="stylesheet" href="css/reveal.css">
 <link rel="stylesheet" href="css/theme/night.css">
@@ -68,7 +68,7 @@
 			<section>
 				<h6>Ciclos de vida de un componente</h6>
 				<p>
-					<img style='width:24%' src='./img/life1.png' /><img style='width:24%' src='./img/life2.png' /><img style='width:24%' src='./img/life3.png' /><img style='width:24%' src='./img/life4.png' />
+					<img style='width:24%' data-src='./img/life1.png' /><img style='width:24%' data-src='./img/life2.png' /><img style='width:24%' data-src='./img/life3.png' /><img style='width:24%' data-src='./img/life4.png' />
 				</p>
 				<small><br />Fuente de las imágenes: <a href='http://javascript.tutorialhorizon.com/2014/09/13/execution-sequence-of-a-react-components-lifecycle-methods/'>Execution sequence of a React component’s lifecycle methods</a></small>
 			</section>
@@ -164,7 +164,7 @@ export default class HelloWorld extends Component {
 
 			<section>
 				<h1>Demo time!!!</h1>
-				<img class='plain' src='./img/cat-keyboard.gif' />
+				<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/cat-keyboard.gif' />
 			</section>
 		</section>
 
@@ -172,8 +172,50 @@ export default class HelloWorld extends Component {
 		<section>
 			<section>
 				<h3>Hijos dinámicos</h3>
+				<img data-src='./img/dynamic.gif' />
 			</section>
 			<section>
+				<h6>Hijos dinámicos</h6>
+				<p>Componentes que renderizan componentes totalmente diferentes según el estado o las propiedades asignadas</p>
+			</section>
+			<section>
+				<h6>Hijos dinámicos</h6>
+				<p>Muy útil para...</p>
+				<ul>
+					<li>Renderizar un componente para cuando no tenemos resultados y otro para cuando sí.
+					<li>Renderizar un componente para indicar que estamos cargando el contenido.
+					<li>Renderizar una listas de componentes
+				</ul>
+			</section>
+			<section>
+				<h6>Hijos dinámicos</h6>
+				<p>Renderizar una listas de componentes</p>
+				<pre>
+					<code class='js'>// app.js
+const results = [{ id: 1, text: "Uno" }, { id: 2, text: "Dos" }];
+const App = () => (&lt;Component results={results} /&gt;)
+
+// component.js
+render () {
+	return (
+	  <ol>
+	    {this.props.results.map(function(result) {
+	      return <li key={result.id}>{result.text}</li>;
+	    })}
+	  </ol>
+	);
+}
+
+// rendered html
+<ol>
+	<li>Uno</li>
+	<li>Dos</li>
+</ol>
+</pre></code>
+			</section>
+			<section>
+				<h1>Demo time!!!</h1>
+				<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/cat-keyboard-2.gif' />
 			</section>
 		</section>
 
@@ -181,12 +223,28 @@ export default class HelloWorld extends Component {
 		<section>
 			<section>
 				<h3>Anidamiento de vistas</h3>
+				<img data-src='./img/inception.gif' />
+			</section>
+			<section>
+				<h6>Anidamiento de vistas</h6>
+			</section>
+			<section>
+				<h1>Demo time!!!</h1>
+				<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/cat-keyboard-3.gif' />
 			</section>
 		</section>
 
 		<section>
 			<section>
 				<h3>Encapsulando librerías</h3>
+				<img data-src='./img/cat-box.gif' />
+			</section>
+			<section>
+				<h6>Encapsulando librerías</h6>
+			</section>
+			<section>
+				<h1>Demo time!!!</h1>
+				<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/cat-keyboard-4.gif' />
 			</section>
 		</section>
 
