@@ -8,7 +8,7 @@ export default class LifeCycleDemo extends Component {
     this.changeState = this.changeState.bind(this);
 
     this.state = {
-      mensaje: 'Mensaje Inicial'
+      mensaje: this.props.initialMessage
     };
 
     console.log('<LifeCycleDemo> constructor');
@@ -21,13 +21,17 @@ export default class LifeCycleDemo extends Component {
   componentDidMount () {
     console.log('<LifeCycleDemo> componentDidMount');
     /*this.interval = setInterval(() => {
-      console.log('go!')
+      this.setState({ mensaje: Date.now() })
+      // console.log('Hola EscuelaIT!')
     }, 100)*/
   }
 
-  shouldComponentUpdate () {
+  shouldComponentUpdate (nextProps, nextState) {
     console.log('<LifeCycleDemo> shouldComponentUpdate');
+    console.log('actualProps', this.props.sizeMessage)
+    console.log('nextProps', nextProps.sizeMessage)
     return true;
+    // return this.props.sizeMessage !== nextProps.sizeMessage
   }
 
   componentWillReceiveProps (nextProps) {

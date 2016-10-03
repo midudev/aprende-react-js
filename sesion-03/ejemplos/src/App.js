@@ -45,9 +45,9 @@ export default class App extends Component {
             onClick={this.changeDemo('EncapsulatingLibrariesDemo')}>EncapsulatingLibrariesDemo</button>
         </header>
 
-        {(demoToLoad === 'LifeCycleDemo') && <LifeCycleDemo sizeMessage={12} />}
+        {(demoToLoad === 'LifeCycleDemo') && <LifeCycleDemo initialMessage='Hola mundo' sizeMessage={12} />}
 
-        {(demoToLoad === 'DynamicChildrenDemo') && <DynamicChildrenDemo />}
+        {(demoToLoad === 'DynamicChildrenDemo') && <DynamicChildrenDemo initialShow={true} />}
 
         {(demoToLoad === 'NestingViewsDemo') && <NestingViewsDemo />}
 

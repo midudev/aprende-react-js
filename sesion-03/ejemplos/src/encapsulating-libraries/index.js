@@ -23,8 +23,7 @@ function RadioButton (props) {
 export default class EncapsulatingLibrariesDemo extends Component {
   constructor (...args) {
     super(...args)
-    const now = Date.now()
-    this.state = { date: now }
+    this.state = { date: false }
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -64,7 +63,9 @@ export default class EncapsulatingLibrariesDemo extends Component {
             2014-06-03
           </label>
         </div>
-        <Timeago date={this.state.date}/>
+
+        {this.state.date && <Timeago date={this.state.date}/>}
+
       </div>
     );
   }

@@ -237,9 +237,60 @@ render () {
 			<section>
 				<h6>Anidamiento de vistas</h6>
 				<pre>
-					<code class='js'>render () {
+					<code class='js'>render () { // App.js
 	return (
+	&lt;ListUsers&gt;
+		<div>
+			<a href='/users/123'/>
+				<img className='User-avatar' src='./john.jpg' />
+				<div className='User-name'>
+					John
+				</div>
+			</a>
+		</div>
+		<div>
+			<a href='/users/456'/>
+				<img className='User-avatar' src='./daniela.jpg' />
+				<div className='User-name'>
+					Daniela
+				</div>
+			</a>
+		</div>
+		<div>
+			<a href='/users/789'/>
+				<img className='User-avatar' src='./alvaro.jpg' />
+				<div className='User-name'>
+					Alvaro
+				</div>
+			</a>
+		</div>
+	&lt;/ListUsers&gt;)
+}
+</pre></code>
+			</section>
+			<section>
+				<h6>Anidamiento de vistas</h6>
+				<pre>
+					<code class='js'>render () { // App.js
+	return (
+		&lt;ListUsers&gt;
+			&lt;ListUsersItem name='John' id={123} avatar='john.jpg' />
+			&lt;ListUsersItem name='Daniela' id={456} avatar='daniela.jpg' />
+			&lt;ListUsersItem name='Alvaro' id={789} avatar='alvaro.jpg' />
+		&lt;ListUsers&gt;
+	)
+}
 
+render () { // ListUserItem
+	return (
+		<div>
+			<a href=`/users/${this.props.id}` />
+				<img className='User-avatar' src={this.props.avatar} />
+				<div className='User-name'>
+					{this.props.name}
+				</div>
+			</a>
+		</div>
 	)
 }
 </pre></code>
@@ -257,7 +308,9 @@ render () {
 			</section>
 			<section>
 				<h6>Encapsulando librerías</h6>
+				<p>Utiliza librerías Javascript y conviertelos en componentes React!</p>
 			</section>
+
 			<section>
 				<h1>Demo time!!!</h1>
 				<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/cat-keyboard-4.gif' />
