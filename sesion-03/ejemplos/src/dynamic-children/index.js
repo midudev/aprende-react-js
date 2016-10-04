@@ -16,14 +16,6 @@ export default class DynamicChildrenDemo extends Component {
     this.setState({ show: true })
   }
 
-  renderImages () {
-    return (<div className={this.state.show ? 'show' : ''}>
-      {this.state.images.map((img, index) => {
-        return <img key={index} role='presentation' src={img} />
-      })}
-    </div>)
-  }
-
   render () {
     return (
       <div>
@@ -31,6 +23,12 @@ export default class DynamicChildrenDemo extends Component {
         { !this.state.show &&
             <button onClick={this.showImage}>Show me a bunch of images!</button>
         }
+
+        <div className={this.state.show ? 'show' : ''}>
+          {this.state.images.map((img, index) => {
+            return <img key={index} role='presentation' src={img} />
+          })}
+        </div>
 
       </div>
     );
