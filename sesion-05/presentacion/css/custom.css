@@ -1,0 +1,24 @@
+.reveal .backgrounds {
+  background: url('../img/react-logo.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.05;
+}
+
+.reveal .footer {
+  position: absolute;
+  bottom: 42px;
+  left: 10px;
+  font-size: 16px;
+}
+
+.reveal .highlight {
+  color: #09f;
+}
+
+.reveal .footer strong,
+.reveal .footer span,
+.reveal .footer img {
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+}
